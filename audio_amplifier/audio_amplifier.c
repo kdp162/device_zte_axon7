@@ -29,7 +29,7 @@
 #include <dlfcn.h>
 #include <sys/ioctl.h>
 
-#define LOG_TAG "ailsa_ii-tfa98xx"
+#define LOG_TAG "axon7-tfa98xx"
 #include <log/log.h>
 
 #include <hardware/audio_amplifier.h>

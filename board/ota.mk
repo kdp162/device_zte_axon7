@@ -1,1 +1,0 @@
-TARGET_OTA_ASSERT_DEVICE := ailsa_ii,axon7

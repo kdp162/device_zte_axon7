@@ -1,5 +1,6 @@
 # Camera
 PRODUCT_PACKAGES += \
+    libshim_camera \
     Snap
 
 # Permissions
@@ -9,6 +10,7 @@ PRODUCT_COPY_FILES += \
 
 # Properties
 PRODUCT_PROPERTY_OVERRIDES += \
+    persist.camera.gyro.disable=0 \
     persist.camera.preview.ubwc=0 \
     persist.camera.video.ubwc=0 \
     persist.camera.stats.test=5 \

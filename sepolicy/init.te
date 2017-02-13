@@ -1,1 +1,1 @@
-allow init vfat:file { read open };
+allow init debugfs:file write;
