@@ -1,0 +1,3 @@
+# Bluetooth
+persist.bt.enableAptXHD=true
+
