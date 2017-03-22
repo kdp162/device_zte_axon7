@@ -22,3 +22,6 @@ include device/zte/axon7/board/*.mk
 
 # inherit from the proprietary version
 -include vendor/zte/axon7/BoardConfigVendor.mk
+
+# ROOT
+ DEFAULT_ROOT_METHOD := magisk
