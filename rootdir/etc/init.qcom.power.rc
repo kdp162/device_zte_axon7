@@ -1,20 +1,19 @@
+on early-init
+    # No Rainbow
+    setprop sys.rainbow.recovery 0
+	
+    # Tweak IO performance during boot up    
+    write /sys/block/dm-0/queue/read_ahead_kb 2048
+    write /sys/block/dm-1/queue/read_ahead_kb 2048
+    write /sys/block/sda/queue/read_ahead_kb 2048
+    write /sys/block/sde/queue/read_ahead_kb 2048
+
+    write /sys/block/dm-0/queue/nr_requests 256
+    write /sys/block/dm-1/queue/nr_requests 256
+    write /sys/block/sda/queue/nr_requests 256
+    write /sys/block/sde/queue/nr_requests 256
+
 on boot
-    # Update foreground and background cpusets
-    write /dev/cpuset/foreground/cpus 0-3
-    write /dev/cpuset/foreground/boost/cpus 0-3
-    write /dev/cpuset/background/cpus 0-3
-    write /dev/cpuset/system-background/cpus 0-3
-    write /dev/cpuset/top-app/cpus 0-3
-
-    # add a cpuset for the camera daemon
-    # we want all cores for camera
-    mkdir /dev/cpuset/camera-daemon
-    write /dev/cpuset/camera-daemon/cpus 0-3
-    write /dev/cpuset/camera-daemon/mems 0
-    chown system system /dev/cpuset/camera-daemon
-    chown system system /dev/cpuset/camera-daemon/tasks
-    chmod 0664 /dev/cpuset/camera-daemon/tasks
-
     # Enable sched boost
     write /proc/sys/kernel/sched_boost 1
 
@@ -27,7 +26,7 @@ on enable-low-power
     write /sys/devices/soc/soc:qcom,bcl/mode "enable"
 
     # Enable Adaptive LMK
-    write /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk 1
+    write /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk 0
     write /sys/module/lowmemorykiller/parameters/vmpressure_file_min 81250
 
     # Configure governor settings for little cluster
@@ -43,8 +42,7 @@ on enable-low-power
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/min_sample_time 19000
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/max_freq_hysteresis 79000
     write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 307200
-    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/ignore_hispeed_on_notif 1
-    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/enable_prediction 1
+    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/ignore_hispeed_on_notif 0
 
     # Online CPU2
     write /sys/devices/system/cpu/cpu2/online 1
@@ -53,17 +51,16 @@ on enable-low-power
     write /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor "interactive"
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/use_sched_load 1
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/use_migration_notif 1
-    write /sys/devices/system/cpu/cpu2/cpufreq/interactive/above_hispeed_delay "39000 1400000:39000 1700000:100000 2100000:79000"
+    write /sys/devices/system/cpu/cpu2/cpufreq/interactive/above_hispeed_delay "19000 1400000:39000 1700000:19000 2100000:79000"
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/go_hispeed_load 90
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/timer_rate 20000
-    write /sys/devices/system/cpu/cpu2/cpufreq/interactive/hispeed_freq 940000
+    write /sys/devices/system/cpu/cpu2/cpufreq/interactive/hispeed_freq 1248000
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/io_is_busy 1
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/target_loads "85 1500000:90 1800000:70 2100000:95"
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/min_sample_time 19000
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/max_freq_hysteresis 79000
     write /sys/devices/system/cpu/cpu2/cpufreq/scaling_min_freq 307200
     write /sys/devices/system/cpu/cpu2/cpufreq/interactive/ignore_hispeed_on_notif 0
-    write /sys/devices/system/cpu/cpu2/cpufreq/interactive/enable_prediction 1
 
     # Re-enable thermal and BCL hotplug
     write /sys/module/msm_thermal/core_control/enabled 1
@@ -73,18 +70,17 @@ on enable-low-power
     write /sys/devices/soc/soc:qcom,bcl/mode "enable"
 
     # Input boost configuration
-    write /sys/module/cpu_boost/parameters/input_boost_freq "0:1036800 1:0 2:1036800 3:0"
-    write /sys/module/cpu_boost/parameters/input_boost_ms 0
+    write /sys/module/cpu_boost/parameters/input_boost_freq "0:1036800 2:1036800"
+    write /sys/module/cpu_boost/parameters/input_boost_ms 500
 
     # Setting b.L scheduler parameters
     write /proc/sys/kernel/sched_boost 0
-    write /proc/sys/kernel/sched_downmigrate 65
-    write /proc/sys/kernel/sched_upmigrate 75
+    write /proc/sys/kernel/sched_downmigrate 90
+    write /proc/sys/kernel/sched_upmigrate 95
     write /proc/sys/kernel/sched_freq_inc_notify 400000
     write /proc/sys/kernel/sched_freq_dec_notify 400000
     write /proc/sys/kernel/sched_spill_nr_run 3
     write /proc/sys/kernel/sched_init_task_load 100
-    write /proc/sys/kernel/sched_upmigrate_min_nice 9
 
     # Enable bus-dcvs
     write /sys/class/devfreq/soc:qcom,cpubw/governor "bw_hwmon"
@@ -110,7 +106,7 @@ on enable-low-power
 
     write /sys/module/lpm_levels/parameters/sleep_disabled "N"
 
-    # Set idle GPU to 133 Mhz
+    # Change GPU initial power level from level 5 to level 6 for power savings
     write /sys/class/kgsl/kgsl-3d0/default_pwrlevel 6
 
     # Set perfd properties
@@ -124,21 +120,63 @@ on charger
     write /sys/devices/system/cpu/cpu2/online 0
     write /sys/devices/system/cpu/cpu3/online 0
     write /sys/module/msm_thermal/core_control/cpus_offlined 14
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor "powersave"
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor "conservative"
     write /sys/module/lpm_levels/parameters/sleep_disabled 0
     start hvdcp_opti
 
 on class_start:late_start
     trigger enable-low-power
 
-on property:init.svc.recovery=running
-    trigger enable-low-power
+on property:sys.boot_completed=1
+    # Tweak IO performance after boot complete
+    write /sys/block/dm-0/queue/scheduler "zen"
+    write /sys/block/dm-1/queue/scheduler "zen"
+    write /sys/block/sda/queue/scheduler "zen"
+    write /sys/block/sde/queue/scheduler "zen"
 
-on property:dev.bootcomplete=1
-    setprop sys.io.scheduler "bfq"
-    # update cpusets now that boot is complete and we want better load balancing
-    write /dev/cpuset/top-app/cpus 0-3
-    write /dev/cpuset/foreground/boost/cpus 0-2
-    write /dev/cpuset/foreground/cpus 0-2
-    write /dev/cpuset/background/cpus 0
-    write /dev/cpuset/system-background/cpus 0-2
+    write /sys/block/dm-0/queue/read_ahead_kb 512
+    write /sys/block/dm-1/queue/read_ahead_kb 512
+    write /sys/block/sda/queue/read_ahead_kb 512
+    write /sys/block/sde/queue/read_ahead_kb 512
+
+    # Disable thermal bcl hotplug to switch governor
+    write /sys/module/msm_thermal/core_control/enabled 0
+    write /sys/devices/soc/soc:qcom,bcl/mode "disable"
+    write /sys/devices/soc/soc:qcom,bcl/hotplug_mask 0
+    write /sys/devices/soc/soc:qcom,bcl/hotplug_soc_mask 0
+    write /sys/devices/soc/soc:qcom,bcl/mode "enable"
+    
+    # Configure governor settings for little cluster
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor "blu_active"
+    write /sys/devices/system/cpu/cpu0/cpufreq/blu_active/above_hispeed_delay 20000
+    write /sys/devices/system/cpu/cpu0/cpufreq/blu_active/go_hispeed_load 90
+    write /sys/devices/system/cpu/cpu0/cpufreq/blu_active/timer_rate 20000
+    write /sys/devices/system/cpu/cpu0/cpufreq/blu_active/hispeed_freq 960000
+    write /sys/devices/system/cpu/cpu0/cpufreq/blu_active/io_is_busy 1
+    write /sys/devices/system/cpu/cpu0/cpufreq/blu_active/align_windows 1
+    write /sys/devices/system/cpu/cpu0/cpufreq/blu_active/target_loads 80
+    write /sys/devices/system/cpu/cpu0/cpufreq/blu_active/min_sample_time 40000
+    write /sys/devices/system/cpu/cpu0/cpufreq/blu_active/timer_slack 20000
+    write /sys/devices/system/cpu/cpu0/cpufreq/blu_active/fastlane 0
+    write /sys/devices/system/cpu/cpu0/cpufreq/blu_active/fastlane_threshold 50
+
+    # Configure governor settings for big cluster
+    write /sys/devices/system/cpu/cpu2/cpufreq/scaling_governor "blu_active"
+    write /sys/devices/system/cpu/cpu2/cpufreq/blu_active/above_hispeed_delay "20000 1400000:40000 1700000:20000 2100000:80000"
+    write /sys/devices/system/cpu/cpu2/cpufreq/blu_active/go_hispeed_load 90
+    write /sys/devices/system/cpu/cpu2/cpufreq/blu_active/timer_rate 20000
+    write /sys/devices/system/cpu/cpu2/cpufreq/blu_active/hispeed_freq 1228800
+    write /sys/devices/system/cpu/cpu2/cpufreq/blu_active/io_is_busy 1
+    write /sys/devices/system/cpu/cpu2/cpufreq/blu_active/align_windows 1
+    write /sys/devices/system/cpu/cpu2/cpufreq/blu_active/target_loads "85 1500000:90 1800000:70 2100000:95"
+    write /sys/devices/system/cpu/cpu2/cpufreq/blu_active/min_sample_time 40000
+    write /sys/devices/system/cpu/cpu2/cpufreq/blu_active/timer_slack 20000
+    write /sys/devices/system/cpu/cpu2/cpufreq/blu_active/fastlane 0
+    write /sys/devices/system/cpu/cpu2/cpufreq/blu_active/fastlane_threshold 50
+    
+    # Re-enable thermal and BCL hotplug
+    write /sys/module/msm_thermal/core_control/enabled 1
+    write /sys/devices/soc/soc:qcom,bcl/mode "disable"
+    write /sys/devices/soc/soc:qcom,bcl/hotplug_mask 12
+    write /sys/devices/soc/soc:qcom,bcl/hotplug_soc_mask 8
+    write /sys/devices/soc/soc:qcom,bcl/mode "enable"
