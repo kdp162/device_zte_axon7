@@ -23,5 +23,10 @@
     "branch": "cm-14.1",
     "repository": "LineageOS/android_vendor_nxp-nfc_opensource_Nfc",
     "target_path": "vendor/nxp-nfc/opensource/Nfc"
+  },
+  {
+    "branch": "cm-14.1",
+    "repository": "TheMuppets/proprietary_vendor_zte",
+    "target_path": "vendor/zte"
   }
 ]
