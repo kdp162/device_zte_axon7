@@ -21,3 +21,8 @@ DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 include $(LOCAL_PATH)/product/*.mk
 
 $(call inherit-product-if-exists, vendor/zte/axon7/axon7-vendor.mk)
+
+# Power HAL
+  PRODUCT_PACKAGES += \
+      power.axon7
+
