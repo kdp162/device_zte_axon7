@@ -263,6 +263,8 @@ vendor/lib/libsmwrapper.so
 # Media
 lib/libOmxVpp.so
 lib/libvpplibrary.so
+-vendor/lib64/libgpustats.so
+-vendor/lib/libgpustats.so
 vendor/lib/libI420colorconvert.so
 vendor/lib/libmm-color-convertor.so
 vendor/lib/libmmosal.so
