@@ -256,9 +256,10 @@ vendor/lib64/hw/keystore.msm8996.so
 vendor/lib/hw/keystore.msm8996.so
 
 # Listen
-vendor/lib/hw/sound_trigger.primary.msm8996.so
-vendor/lib/libadpcmdec.so
-vendor/lib/libsmwrapper.so
+vendor/lib/hw/sound_trigger.primary.msm8996.so|940aa6511028dee131b0bf2671fd7c98fbf5ed33
+vendor/lib/libadpcmdec.so|cce776b6e1edac56705b155444c3f28362055442
+vendor/lib/libsmwrapper.so|40544c9ba29f1f3e8e67c80987869500b8325a0d
+vendor/lib/vendor.qti.voiceprint@1.0.so|a706a35926dde53af240cafea640ab9e607f0cf1
 
 # Media
 -vendor/lib64/libgpustats.so|34c19702c14ddfb22fe0caffb4a22f842efe206c
