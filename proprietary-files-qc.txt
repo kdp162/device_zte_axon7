@@ -252,8 +252,8 @@ vendor/lib/libsd_sdk_display.so|23b1ef85654178da98e4f950d26736759cf069c1
 bin/hvdcp_opti
 
 # Keystore
-vendor/lib64/hw/keystore.msm8996.so
-vendor/lib/hw/keystore.msm8996.so
+-vendor/lib64/hw/keystore.msm8996.so|ade812bb2991c103f6af397e9662460ed0e48d5f
+-vendor/lib/hw/keystore.msm8996.so|bd92d1ccbc294e6bcb0fdb4018749646d1ba0193
 
 # Listen
 vendor/lib/hw/sound_trigger.primary.msm8996.so|940aa6511028dee131b0bf2671fd7c98fbf5ed33
