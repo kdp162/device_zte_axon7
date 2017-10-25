@@ -261,18 +261,17 @@ vendor/lib/libadpcmdec.so
 vendor/lib/libsmwrapper.so
 
 # Media
-lib/libOmxVpp.so
-lib/libvpplibrary.so
--vendor/lib64/libgpustats.so
--vendor/lib/libgpustats.so
-vendor/lib/libI420colorconvert.so
-vendor/lib/libmm-color-convertor.so
-vendor/lib/libmmosal.so
-vendor/lib/libOmxAacDec.so
-vendor/lib/libOmxEvrcDec.so
-vendor/lib/libOmxQcelp13Dec.so
-vendor/lib/libvpphvx.so
-vendor/lib/libvqzip.so
+-vendor/lib64/libgpustats.so|34c19702c14ddfb22fe0caffb4a22f842efe206c
+-vendor/lib/libgpustats.so|176395bf6055b3475080d9bae65684820bafab49
+vendor/lib/libI420colorconvert.so|38212d068cd62a91a7cf88337a9655c0fd2c46ca
+vendor/lib/libmm-color-convertor.so|7b22d9452ece4d1d758dbc076ca59b43f5dac298
+vendor/lib/libOmxAacDec.so|2d75de00c868659eaab22d3a38ff4acb5e15a79f
+vendor/lib/libOmxAmrDec.so|636b30d83bda704c1127eaeb94413da4db79d3a3
+vendor/lib/libOmxEvrcDec.so|20320f64a288a74f28154eb6b53a6790034799ca
+vendor/lib/libOmxQcelp13Dec.so|ac8733bccd9080e4cd8f78164ea5601f6b37eeec
+vendor/lib/libOmxVpp.so|e732e95e48659f166368d5e4d9ca6d0502ed0290
+vendor/lib/libvpphvx.so|b095e79409b7927f64845b9086b29a131a3f5d93
+vendor/lib/libvpplibrary.so|2e4573d902dbb8f59ee12709181dd9b21aa21347
 
 # Peripheral manager
 vendor/bin/pm-proxy|e2354a71c979c3d961f198d3c8f3e2e27d8ab85b
