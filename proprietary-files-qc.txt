@@ -249,7 +249,7 @@ vendor/lib/libsd_sdk_display.so|23b1ef85654178da98e4f950d26736759cf069c1
 -vendor/lib/libsdm-disp-apis.so|72f6db2b249a47a6ac83d4dfc7d2e9f76b349920
 
 # HVDCP
-bin/hvdcp_opti
+vendor/bin/hvdcp_opti|164209897f9a880826cbf79da66322c77da52178
 
 # Keystore
 -vendor/lib64/hw/keystore.msm8996.so|ade812bb2991c103f6af397e9662460ed0e48d5f
