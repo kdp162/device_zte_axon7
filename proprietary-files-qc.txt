@@ -291,10 +291,10 @@ vendor/lib/libperipheral_client.so
 
 # Postprocessing
 etc/permissions/com.qti.snapdragon.sdk.display.xml
-framework/com.qti.snapdragon.sdk.display.jar
--vendor/app/colorservice/colorservice.apk
-vendor/bin/mm-pp-dpps
-vendor/lib64/libdisp-aba.so
+framework/com.qti.snapdragon.sdk.display.jar|12aebca2cc354e14500f6ccfc54f94885d6036a0
+-vendor/app/colorservice/colorservice.apk|91be907db0540bdd38ed9b2b24e31f2e80c9f887
+vendor/bin/mm-pp-dpps|7436ff3c0e348b24410350bac230406f04850578
+vendor/lib64/libdisp-aba.so|9769fec5526ab90836300fd3b305e9d458fb8868
 
 # QMI
 vendor/bin/irsc_util|4c396ad0d0c8e62851b9ad79868b0519130532eb
