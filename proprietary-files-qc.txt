@@ -454,5 +454,4 @@ vendor/lib/libWVStreamControlAPI_L3.so
 vendor/lib/mediadrm/libwvdrmengine.so
 
 # Wifi
-bin/cnss-daemon
-bin/cnss_diag
+vendor/bin/cnss-daemon|dc552eacc29ebc58a2c6509e105654fa0fea47e7
