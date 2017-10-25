@@ -283,10 +283,6 @@ vendor/lib/libconnctrl.so
 vendor/lib/libcsm_data.so
 vendor/lib/libQtiTether.so
 
-# Perf
-bin/energy-awareness
-bin/msm_irqbalance
-
 # Peripheral manager
 bin/pm-proxy
 bin/pm-service
