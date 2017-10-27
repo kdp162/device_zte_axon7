@@ -142,8 +142,8 @@ vendor/lib64/libStDrvInt.so
 vendor/lib/libQSEEComAPI.so
 
 # Gatekeeper
-vendor/lib64/hw/gatekeeper.msm8996.so
-vendor/lib/hw/gatekeeper.msm8996.so
+vendor/lib64/hw/gatekeeper.msm8996.so|285d7f197ee11a5eac1b1e333f7dfe8684087859
+vendor/lib/hw/gatekeeper.msm8996.so|ac555627694d57b1dd79b4ddf3faec2e9174967f
 
 # GPS
 lib64/vendor.qti.gnss@1.0.so|f1b161f283b4d0c2b789c20624f9ef91c8ffb0fa
