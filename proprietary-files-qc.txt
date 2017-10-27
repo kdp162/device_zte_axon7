@@ -47,21 +47,9 @@ vendor/lib/soundfx/libqcreverb.so
 vendor/lib/soundfx/libqcvirt.so
 
 # Bluetooth
-bin/bt_mac_writer
-bin/hci_qcomm_init
-bin/wcnss_filter
-etc/firmware/nvm_tlv_1.3.bin
-etc/firmware/nvm_tlv_2.1.bin
-etc/firmware/nvm_tlv_3.0.bin
-etc/firmware/nvm_tlv_3.2.bin
-etc/firmware/nvm_tlv.bin
-etc/firmware/rampatch_tlv_1.3.tlv
-etc/firmware/rampatch_tlv_2.1.tlv
-etc/firmware/rampatch_tlv_3.0.tlv
-etc/firmware/rampatch_tlv_3.2.tlv
-etc/firmware/rampatch_tlv.img
-vendor/lib64/libbtnv.so
-vendor/lib/libbtnv.so
+vendor/bin/wcnss_filter|c0b343dc0f303adf28444f2448afe2dbb6c45c6b
+vendor/lib64/libbtnv.so|e6b80c883b48b8bb220ec18f296204eb5bfeb9ab
+vendor/lib/libbtnv.so|4566af7729aa27a72d9c740911a7b8437d49cabe
 
 # CNE
 etc/permissions/com.quicinc.cne.xml
